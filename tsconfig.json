@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["vite/client"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
+    "paths": {
+      "/~/*": ["src/*"]
+    } /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+  },
+  "include": ["./src"]
+}

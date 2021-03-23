@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 16px;
+}
+
+.button {
+  @apply py-2 px-4 rounded shadow-sm text-sm font-medium text-indigo-500 bg-white hover:text-indigo-500 focus:outline-none;
+}
+.button-primary {
+  @apply text-white bg-indigo-500 hover:bg-indigo-600 hover:text-white;
+}
+.canvas-field {
+  min-height: 30px;
+}
