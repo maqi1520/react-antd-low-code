@@ -1,29 +1,20 @@
-import { reduce, isArray, map } from 'lodash'
-import { traverseUp } from '/~/utils'
+import { isArray, isString, map } from 'lodash'
 import { State } from '../../codeTreeSlice'
 
-type GenerateComponentCode = Record<
-  string,
-  (sub: State, props: string) => string
->
-
-const generateComponentCode: GenerateComponentCode = {
-  select: (sub, props) => {
-    const children = reduce(
+const getChildrenCode = (sub: State) => {
+  if (sub.type === 'select') {
+    return map(
       sub.props.children,
-      (acc, item) =>
-        `${acc}<option value="${item.value}">${item.label}</option>`,
-      ''
-    )
-    return `<${sub.type}${props}>
-      ${children}
-    </${sub.type}>`
-  },
+      (item) => `<option value="${item.value}">${item.label}</option>`
+    ).join('')
+  }
+  if (isString(sub.props.children)) {
+    return sub.props.children
+  }
+  return ''
 }
 
 export const generateCode = (state: State) => {
-  console.log(state)
-
   let module: Record<string, string[]> = {}
 
   function render(sub: State): string {
@@ -48,7 +39,11 @@ export const generateCode = (state: State) => {
         }
       })
     }
-    const children = map(sub.children, render).join('') || sub.props.children
+
+    const children =
+      sub.children && sub.children.length > 0
+        ? map(sub.children, render).join('')
+        : getChildrenCode(sub)
     if (children) {
       return `<${sub.type}${props}>
         ${children}
