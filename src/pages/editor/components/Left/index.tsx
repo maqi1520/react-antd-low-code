@@ -84,16 +84,19 @@ export default function Left(): ReactElement {
             <div
               key={menu.key}
               onClick={() => setType(menu.key)}
-              className={cl('py-5 cursor-pointer w-20', {
-                'bg-black bg-opacity-10': menu.key === type,
-              })}
+              className={cl(
+                'py-5 cursor-pointer w-20 border-transparent border-r-4 hover:bg-indigo-50',
+                {
+                  'border-indigo-600 shadow': menu.key === type,
+                }
+              )}
             >
               <MenuIcon active={menu.key === type} />
             </div>
           )
         })}
       </div>
-      <div className="w-40 overscroll-y-auto bg-indigo-50 p-2 space-y-2 border-r border-l border-gray-200">
+      <div className="w-40 overscroll-y-auto p-2 space-y-2 border-r border-l border-gray-200">
         {fields && fields.data.map((d) => <DragItem key={d.type} data={d} />)}
       </div>
     </div>

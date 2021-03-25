@@ -115,7 +115,7 @@ export default function Item({ data, parentId, index }: Props) {
     'canvas-field p-1 border-2 border-dashed border-opacity-75 relative',
     {
       'border-opacity-50': isDragging,
-      'border-indigo-500': state.focusId === data.id,
+      'border-indigo-600': state.focusId === data.id,
       'border-gray-200': !isOver || !canDrop,
       inline: data.type === 'span' || data.type === 'Link',
     }
@@ -154,7 +154,7 @@ export default function Item({ data, parentId, index }: Props) {
           ></div>
         </div>
         {isOver && canDrop ? (
-          <div className="border-indigo-500 border my-1" />
+          <div className="border-indigo-600 border my-1" />
         ) : null}
       </div>
     )
@@ -168,7 +168,7 @@ export default function Item({ data, parentId, index }: Props) {
             <Item parentId={data.id} index={index} data={sub} key={sub.id} />
           ))}
       </CurrentTag>
-      {isOver && canDrop ? <div className="border-indigo-500 border" /> : null}
+      {isOver && canDrop ? <div className="border-indigo-600 border" /> : null}
       <div
         className={cl('absolute inset-0 w-full h-full pointer-events-none', {
           'opacity-50 bg-gray-200': isDragging,

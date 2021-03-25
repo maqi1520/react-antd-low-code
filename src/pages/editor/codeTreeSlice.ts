@@ -57,7 +57,6 @@ const codeTree = createSlice({
           ],
         }))
       }
-      console.log(children)
 
       state.children.push({
         ...action.payload,

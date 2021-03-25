@@ -12,8 +12,11 @@ interface DragItem {
   dragParentId: string
   dragIndex: number
 }
+interface Props {
+  mobile: boolean
+}
 
-export default function Canvas() {
+export default function Canvas({ mobile }: Props) {
   const state = useAppSelector((state) => state.codeTree)
   const dispatch = useAppDispatch()
   const [{ canDrop, isOver }, drop] = useDrop<
@@ -51,18 +54,24 @@ export default function Canvas() {
     }),
   }))
   return (
-    <div
-      ref={drop}
-      className={cl('flex-1 p-2 overflow-y-scroll space-y-1', {
-        'bg-indigo-50': isOver && canDrop,
-      })}
-    >
-      {state.children.map((sub, index) => (
-        <Item parentId={state.id} index={index} data={sub} key={sub.id} />
-      ))}
-      {isOver && canDrop ? (
-        <div className="border-indigo-500 border my-1" />
-      ) : null}
+    <div className="flex-1 p-4 overflow-y-scroll bg-indigo-50">
+      <div
+        ref={drop}
+        style={{ width: mobile ? 375 : 'auto' }}
+        className={cl(
+          'space-y-1 bg-white border-gray-200 border m-auto min-h-full  transition-all',
+          {
+            'bg-indigo-50': isOver && canDrop,
+          }
+        )}
+      >
+        {state.children.map((sub, index) => (
+          <Item parentId={state.id} index={index} data={sub} key={sub.id} />
+        ))}
+        {isOver && canDrop ? (
+          <div className="border-indigo-500 border my-1" />
+        ) : null}
+      </div>
     </div>
   )
 }

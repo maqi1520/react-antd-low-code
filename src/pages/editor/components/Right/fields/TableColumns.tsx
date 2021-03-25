@@ -32,7 +32,6 @@ function OptionItemEditor({ option, onChange, onRemove, index }: ItemProps) {
       <div className="flex-1 flex items-center">
         <div className="w-12 flex-shrink-0  px-2">dataIndex:</div>
         <input
-          className="px-2 py-1 leading-5 block w-full shadow-sm border border-gray-300 rounded"
           name="dataIndex"
           onChange={handleChange}
           value={option.dataIndex}
@@ -42,7 +41,6 @@ function OptionItemEditor({ option, onChange, onRemove, index }: ItemProps) {
       <div className="flex-1 flex items-center">
         <div className="w-12 flex-shrink-0 px-2">title:</div>
         <input
-          className="px-2 py-1 leading-5 block w-full shadow-sm border border-gray-300 rounded"
           name="title"
           onChange={handleChange}
           value={option.title}

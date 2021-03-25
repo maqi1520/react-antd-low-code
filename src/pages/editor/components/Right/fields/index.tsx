@@ -2,8 +2,10 @@ import OptionEditor from './OptionEditor'
 import TableColumns from './TableColumns'
 import EditableTable from './EditableTable'
 import Input, { TextArea } from './Input'
+import Table from './Table'
+import Color from './Color'
 import Radio from './Radio'
-import { Select,InputNumber } from 'antd'
+import { Select, InputNumber } from 'antd'
 import './index.css'
 
 export const fields = {
@@ -12,6 +14,8 @@ export const fields = {
   OptionEditor: OptionEditor,
   TableColumns,
   EditableTable,
+  Table,
+  Color,
   Radio,
   Select,
   TextArea: TextArea,

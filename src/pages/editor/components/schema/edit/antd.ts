@@ -183,7 +183,7 @@ const editFields: Record<string, Field[]> = {
     {
       key: 'dataSource',
       name: '数据源',
-      type: 'TextArea',
+      type: 'Table',
     },
   ],
 }

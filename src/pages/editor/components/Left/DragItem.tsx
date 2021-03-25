@@ -23,7 +23,7 @@ export default function DragItem({
     <div
       ref={dragRef}
       className={cl(
-        'p-2 border border-indigo-400 text-center text-indigo-600 shadow-sm rounded bg-indigo-100 cursor-move hover:bg-indigo-500 hover:text-white',
+        'p-2 border border-gray-200 text-center text-gray-600 shadow-sm rounded bg-gray-50 cursor-move hover:bg-gray-100 hover:text-gray-900',
         {
           'opacity-50': isDragging,
         }

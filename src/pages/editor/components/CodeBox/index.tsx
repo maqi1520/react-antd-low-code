@@ -21,11 +21,9 @@ export default function CodeBox() {
 
   useEffect(() => {
     const code = generateCode(state)
-    console.log(code)
     myWorker.postMessage(code)
     console.log('Message posted to worker')
   }, [state])
-  console.log('code', code)
   return (
     <div className="flex-1">
       <AceEditor

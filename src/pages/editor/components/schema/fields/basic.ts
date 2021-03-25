@@ -28,7 +28,7 @@ const fields: FieldNode[] = [
     childElement: true,
     props: {
       className:
-        'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none',
+        'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded text-white bg-indigo-600 hover:bg-indigo-600 focus:outline-none',
       children: 'button',
     },
   },

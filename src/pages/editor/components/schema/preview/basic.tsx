@@ -33,7 +33,6 @@ interface Option {
 
 const previewFields = {
   div: (props: any) => <div {...props} />,
-  Grid: Grid,
   // eslint-disable-next-line jsx-a11y/heading-has-content
   h1: (props: any) => <h1 {...props} />,
   p: (props: any) => <p {...props} />,
