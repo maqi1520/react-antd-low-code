@@ -137,7 +137,6 @@ class EditableTable extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props)
-    console.log(props)
 
     if (props.columns) {
       this.columns = props.columns.map((column: {}) => ({
@@ -196,8 +195,6 @@ class EditableTable extends React.Component<any, any> {
     const dataSource =
       props.value &&
       props.value.map((item: any, i: number) => ({ key: i + '', ...item }))
-
-    console.log(props)
 
     this.state = {
       dataSource: dataSource,
@@ -315,7 +312,6 @@ class EditableTable extends React.Component<any, any> {
   }
 
   getApiFn = () => {
-    console.log(this.apiForm)
     const { api, header } = this.apiForm
     fetch(api, {
       cache: 'no-cache',

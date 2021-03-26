@@ -3,17 +3,22 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
 
 export default function Login() {
-  const { register, handleSubmit, watch, errors } = useForm()
+  const { register, handleSubmit, errors } = useForm({
+    defaultValues: {
+      email: 'admin@admin.com',
+      password: '123456',
+    },
+  })
   const history = useHistory()
   const onSubmit = (data) => {
     console.log(data)
-    history.push('/')
+    history.push('/editor')
   }
   console.log(errors)
 
   return (
-    <div className="min-h-screen bg-gray-200 flex justify-center items-center">
-      <div className="mx-auto w-full max-w-sm bg-white p-10 shadow">
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-indigo-500 flex justify-center items-center">
+      <div className="mx-auto w-full max-w-sm bg-white p-10 shadow-lg">
         <h2 className="mt-2 text-3xl leading-9 font-extrabold text-gray-900">
           Sign in to your account
         </h2>
@@ -90,11 +95,14 @@ export default function Login() {
               </div>
 
               <div className="mt-6">
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-sm text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700  transition duration-150 ease-in-out"
-                >
+                <button type="submit" className="btn w-full btn-primary btn-lg">
                   Sign in
+                </button>
+              </div>
+
+              <div className="mt-6">
+                <button type="button" className="btn w-full btn-lg">
+                  Create account
                 </button>
               </div>
             </form>

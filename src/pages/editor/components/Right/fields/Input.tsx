@@ -7,7 +7,13 @@ interface Props {
 }
 
 export default function CustomInput({ onChange, value }: Props): ReactElement {
-  return <Input value={value} onChange={(e) => onChange(e.target.value)} />
+  return (
+    <input
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
+  )
 }
 
 export function TextArea({ onChange, value }: Props): ReactElement {

@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '/~/app/hooks'
 import { useDrop, useDrag } from 'react-dnd'
+import { getEmptyImage } from 'react-dnd-html5-backend'
 import previewFields from '../schema/preview'
 import cl from 'classnames'
 import {
@@ -31,7 +32,8 @@ interface CollectedProps {
 }
 
 export default function Item({ data, parentId, index }: Props) {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [positionDown, setPosition] = useState(true)
 
   const state = useAppSelector((state) => state.codeTree)
   const dispatch = useAppDispatch()
@@ -50,6 +52,7 @@ export default function Item({ data, parentId, index }: Props) {
               hoverIndex: index,
               data,
               item: item.data,
+              positionDown,
             })
           )
         } else {
@@ -61,11 +64,44 @@ export default function Item({ data, parentId, index }: Props) {
               dragIndex: item.dragIndex,
               data,
               item: item.data,
+              positionDown,
             })
           )
         }
 
         return { name: 'Dustbin' }
+      },
+      hover: (item, monitor) => {
+        // 只检查被hover的最小元素
+        const didHover = monitor.isOver({ shallow: true })
+        if (didHover && ref.current) {
+          // Determine rectangle on screen
+          const hoverBoundingRect = ref.current.getBoundingClientRect()
+          // Get vertical middle
+          const hoverMiddleY =
+            (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+          // Determine mouse position
+
+          const clientOffset = monitor.getClientOffset()
+          //const dragOffset = monitor.getSourceClientOffset()
+
+          if (clientOffset) {
+            // Get pixels to the top
+            const hoverClientY = clientOffset.y - hoverBoundingRect.top
+            // Only perform the move when the mouse has crossed half of the items height
+            // When dragging downwards, only move when the cursor is below 50%
+            // When dragging upwards, only move when the cursor is above 50%
+            // Dragging downwards
+
+            if (hoverClientY <= hoverMiddleY) {
+              setPosition(false)
+            }
+            // Dragging upwards
+            if (hoverClientY > hoverMiddleY) {
+              setPosition(true)
+            }
+          }
+        }
       },
       collect: (monitor) => ({
         isOver: monitor.isOver({
@@ -74,10 +110,10 @@ export default function Item({ data, parentId, index }: Props) {
         canDrop: monitor.canDrop(),
       }),
     }),
-    [data, parentId, index]
+    [data, parentId, positionDown, index]
   )
 
-  const [{ isDragging }, drag] = useDrag(() => {
+  const [{ isDragging }, drag, connectDragPreview] = useDrag(() => {
     const dragData: DragData = {
       type: CRAD,
       data,
@@ -91,6 +127,8 @@ export default function Item({ data, parentId, index }: Props) {
       }),
     }
   }, [data, index, parentId])
+
+  connectDragPreview(getEmptyImage())
   drag(drop(ref))
   const CurrentTag = previewFields[data.type]
 
@@ -112,11 +150,10 @@ export default function Item({ data, parentId, index }: Props) {
     )
   }
   const className = cl(
-    'canvas-field p-1 border-2 border-dashed border-opacity-75 relative',
+    'canvas-field p-2 border border-gray-300 border-dashed  relative',
     {
-      'border-opacity-50': isDragging,
-      'border-indigo-600': state.focusId === data.id,
-      'border-gray-200': !isOver || !canDrop,
+      'opacity-0': isDragging,
+      'outline-blue border-opacity-0': state.focusId === data.id,
       inline: data.type === 'span' || data.type === 'Link',
     }
   )
@@ -126,7 +163,7 @@ export default function Item({ data, parentId, index }: Props) {
       className="px-2 py-1 text-white bg-indigo-600 opacity-75 absolute right-0 top-0 z-10 cursor-pointer"
     >
       <svg
-        className="w-4 h-4"
+        className="w-4 h-4 bg"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -143,8 +180,15 @@ export default function Item({ data, parentId, index }: Props) {
   )
   if (data.childElement) {
     return (
-      <div>
-        <div onClick={handleFocus} className={className} ref={ref}>
+      <div
+        ref={ref}
+        onClick={handleFocus}
+        className={cl({ 'opacity-0': isDragging })}
+      >
+        {isOver && canDrop && !positionDown ? (
+          <div className="border-indigo-600 border my-1" />
+        ) : null}
+        <div className={className}>
           {state.focusId === data.id && action}
           <CurrentTag {...data.props}></CurrentTag>
           <div
@@ -153,22 +197,28 @@ export default function Item({ data, parentId, index }: Props) {
             })}
           ></div>
         </div>
-        {isOver && canDrop ? (
+        {isOver && canDrop && positionDown ? (
           <div className="border-indigo-600 border my-1" />
         ) : null}
       </div>
     )
   }
+
   return (
     <div onClick={handleFocus} className={className} ref={ref}>
       {state.focusId === data.id && action}
+      {isOver && canDrop && !positionDown ? (
+        <div className="border-indigo-600 border" />
+      ) : null}
       <CurrentTag {...data.props}>
         {data.children &&
           data.children.map((sub, index) => (
             <Item parentId={data.id} index={index} data={sub} key={sub.id} />
           ))}
       </CurrentTag>
-      {isOver && canDrop ? <div className="border-indigo-600 border" /> : null}
+      {isOver && canDrop && positionDown ? (
+        <div className="border-indigo-600 border" />
+      ) : null}
       <div
         className={cl('absolute inset-0 w-full h-full pointer-events-none', {
           'opacity-50 bg-gray-200': isDragging,

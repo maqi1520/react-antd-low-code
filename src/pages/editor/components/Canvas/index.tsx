@@ -5,6 +5,7 @@ import { CRAD } from '../ItemTypes'
 import { useDrop } from 'react-dnd'
 import cl from 'classnames'
 import Item from './Item'
+import DragLayer from './DragLayer'
 
 interface DragItem {
   type: string
@@ -59,18 +60,21 @@ export default function Canvas({ mobile }: Props) {
         ref={drop}
         style={{ width: mobile ? 375 : 'auto' }}
         className={cl(
-          'space-y-1 bg-white border-gray-200 border m-auto min-h-full  transition-all',
-          {
-            'bg-indigo-50': isOver && canDrop,
-          }
+          'space-y-1 bg-white border-gray-200 border m-auto min-h-full  transition-all relative'
         )}
       >
         {state.children.map((sub, index) => (
           <Item parentId={state.id} index={index} data={sub} key={sub.id} />
         ))}
+        {state.children.length == 0 ? (
+          <div className="flex items-center justify-center text-gray-200 text-3xl absolute inset-0">
+            拖动组件到这
+          </div>
+        ) : null}
         {isOver && canDrop ? (
           <div className="border-indigo-500 border my-1" />
         ) : null}
+        <DragLayer />
       </div>
     </div>
   )

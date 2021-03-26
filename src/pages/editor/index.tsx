@@ -47,18 +47,10 @@ function Editor() {
                 />
               </svg>
             </div>
-            <button
-              onClick={() => setVisible(!visible)}
-              className="button button-gray ml-2"
-            >
+            <button onClick={() => setVisible(!visible)} className="btn ml-2">
               show code
             </button>
-            <button
-              onClick={() => setVisible(!visible)}
-              className="button button-primary ml-2"
-            >
-              save
-            </button>
+            <button className="btn btn-primary ml-2">save</button>
           </div>
         </header>
         {visible ? (

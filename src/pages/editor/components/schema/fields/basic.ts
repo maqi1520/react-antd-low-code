@@ -11,6 +11,7 @@ const fields: FieldNode[] = [
     type: 'h1',
     childElement: true,
     props: {
+      className: 'text-3xl',
       children: 'H1',
     },
   },
@@ -27,8 +28,7 @@ const fields: FieldNode[] = [
     type: 'button',
     childElement: true,
     props: {
-      className:
-        'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded text-white bg-indigo-600 hover:bg-indigo-600 focus:outline-none',
+      className: 'btn btn-primary',
       children: 'button',
     },
   },
@@ -36,9 +36,8 @@ const fields: FieldNode[] = [
     type: 'input',
     childElement: true,
     props: {
+      type: 'text',
       placeholder: 'pleaceholder',
-      className:
-        'px-4 py-2 block w-full shadow-sm border border-gray-300 rounded',
     },
   },
   {
@@ -50,8 +49,6 @@ const fields: FieldNode[] = [
         { value: 'woman', label: 'woman' },
       ],
       placeholder: 'pleaceholder',
-      className:
-        'px-4 py-2 block w-full shadow-sm border border-gray-300 rounded',
     },
   },
   {

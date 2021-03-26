@@ -27,20 +27,22 @@
   }
 }
 
+@layer components {
+  .btn {
+    @apply flex justify-center py-2 px-4 border border-gray-300 text-sm font-medium rounded-sm hover:border-indigo-500 hover:text-indigo-500 focus:outline-none;
+  }
+  .btn-primary {
+    @apply text-white bg-indigo-600 border-transparent hover:bg-indigo-500 hover:text-white;
+  }
+  .btn-lg {
+    @apply leading-6;
+  }
+}
+
 html {
   font-size: 16px;
 }
 
-.button {
-  @apply py-2 px-4 rounded-sm shadow-sm text-sm font-medium text-indigo-600 bg-white focus:outline-none;
-}
-.button-primary {
-  @apply text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white;
-}
-
-.button-gray {
-  @apply text-gray-600 bg-gray-100 hover:bg-gray-200 hover:text-gray-800;
-}
 .canvas-field {
   min-height: 30px;
 }

@@ -67,6 +67,11 @@ const editFields: Record<string, Field[]> = {
       name: '内容',
       type: 'Text',
     },
+    {
+      key: 'className',
+      name: '样式',
+      type: 'Text',
+    },
   ],
   input: [
     {

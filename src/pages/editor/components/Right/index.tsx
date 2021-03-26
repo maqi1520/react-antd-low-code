@@ -44,6 +44,7 @@ export default function Right() {
       return (
         <Select
           style={{ width: '100%' }}
+          options={other.options}
           value={focusComponent?.props[key]}
           onChange={(value: any) => handleChange(value, key)}
         />

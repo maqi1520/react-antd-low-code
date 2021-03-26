@@ -27,52 +27,30 @@ const codeTree = createSlice({
     append: (state, action) => {
       const focusId = uuid()
       state.focusId = focusId
-      const { type } = action.payload
-      let children: any[] = []
-      if (type === 'Grid') {
-        children = new Array(4).fill('1').map(() => ({
-          id: uuid(),
-          type: 'div',
-          props: {
-            className: '',
-          },
-        }))
-      }
-      if (type === 'Form') {
-        children = new Array(3).fill('1').map((it, i) => ({
-          id: uuid(),
-          type: 'Form.Item',
-          props: {
-            name: 'field' + i,
-            label: 'field' + i,
-          },
-          children: [
-            {
-              type: 'Input',
-              id: uuid(),
-              childElement: true,
-              module: 'antd',
-              props: {},
-            },
-          ],
-        }))
-      }
-
       state.children.push({
         ...action.payload,
-        children,
         id: focusId,
       })
     },
     appendCom: (state, action) => {
-      const { data, item, hoverParentId, hoverIndex } = action.payload
+      const {
+        data,
+        item,
+        hoverParentId,
+        hoverIndex,
+        positionDown,
+      } = action.payload
 
       const focusId = uuid()
 
       traverse(state, (sub) => {
         //非嵌套标签往父层插入
         if (data.childElement && sub.id === hoverParentId) {
-          sub.children.splice(hoverIndex + 1, 0, { ...item, id: focusId })
+          if (positionDown) {
+            sub.children.splice(hoverIndex + 1, 0, { ...item, id: focusId })
+          } else {
+            sub.children.splice(hoverIndex, 0, { ...item, id: focusId })
+          }
           return false
         }
         if (!data.childElement && sub.id === data.id) {
@@ -99,6 +77,7 @@ const codeTree = createSlice({
         hoverIndex: hIndex,
         dragParentId,
         dragIndex,
+        positionDown,
       } = action.payload
 
       if (hoverData.id === dragData.id) return state
@@ -128,7 +107,11 @@ const codeTree = createSlice({
       traverse(state, (sub) => {
         //非嵌套标签往父层插入
         if (hoverData.childElement && sub.id === hId) {
-          sub.children.splice(hIndex + 1, 0, { ...dragData, id: focusId })
+          if (positionDown) {
+            sub.children.splice(hIndex + 1, 0, { ...dragData, id: focusId })
+          } else {
+            sub.children.splice(hIndex, 0, { ...dragData, id: focusId })
+          }
           return false
         }
         if (!hoverData.childElement && sub.id === hoverData.id) {
