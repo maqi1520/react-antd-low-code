@@ -46,3 +46,8 @@ html {
 .canvas-field {
   min-height: 30px;
 }
+.tree-selected-item::before {
+  content: '';
+  height: 28px;
+  @apply border-indigo-600 border bg-indigo-50 absolute left-0 right-0 z-0;
+}

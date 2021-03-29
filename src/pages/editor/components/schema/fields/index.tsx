@@ -2,27 +2,34 @@ import antd from './antd'
 import basic from './basic'
 import components from './components'
 import { icons } from '../../Left'
-import { FieldNode } from '../types'
+import DragPanel from '../../Left/DragPanel'
+import TreePanel from '../../TreePanel'
+import React, { ReactElement } from 'react'
 
 const menus: {
   key: string
   icon: keyof typeof icons
-  data: FieldNode[]
+  panel: ReactElement
 }[] = [
+  {
+    key: 'tree',
+    icon: 'tree',
+    panel: <TreePanel />,
+  },
   {
     key: 'basic',
     icon: 'HTML5',
-    data: basic,
+    panel: <DragPanel data={basic} />,
   },
   {
     key: 'antd',
     icon: 'antd',
-    data: antd,
+    panel: <DragPanel data={antd} />,
   },
   {
     key: 'components',
     icon: 'components',
-    data: components,
+    panel: <DragPanel data={components} />,
   },
 ]
 

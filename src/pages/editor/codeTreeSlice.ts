@@ -105,7 +105,6 @@ const codeTree = createSlice({
       })
 
       traverse(state, (sub) => {
-        //非嵌套标签往父层插入
         if (hoverData.childElement && sub.id === hId) {
           if (positionDown) {
             sub.children.splice(hIndex + 1, 0, { ...dragData, id: focusId })
@@ -114,9 +113,10 @@ const codeTree = createSlice({
           }
           return false
         }
+        //非嵌套标签往父层插入
         if (!hoverData.childElement && sub.id === hoverData.id) {
           if (sub.children) {
-            sub.children.push({
+            sub.children.unshift({
               ...dragData,
               id: focusId,
             })

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Switch } from 'antd'
+import cl from 'classnames'
 import Left from './components/Left'
 import Right from './components/Right'
 import Canvas from './components/Canvas'
-import CodeBox from './components/CodeBox'
+import ShowCodeBtn from './components/ShowCodeBtn'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 
 function Editor() {
-  const [visible, setVisible] = useState(false)
   const [checked, setChecked] = useState(false)
   return (
     <DndProvider backend={HTML5Backend}>
@@ -18,7 +18,10 @@ function Editor() {
           <div className="inline-flex justify-center items-center">
             <div className="inline-flex justify-center items-center">
               <svg
-                className="w-6 h-6 text-gray-500 mr-1"
+                className={cl('w-6 h-6 mr-1', {
+                  'text-indigo-600': !checked,
+                  'text-gray-500': checked,
+                })}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -33,7 +36,10 @@ function Editor() {
               </svg>
               <Switch checked={checked} onChange={(c) => setChecked(c)} />
               <svg
-                className="w-6 h-6 text-gray-500"
+                className={cl('w-6 h-6 ml-1', {
+                  'text-indigo-600': checked,
+                  'text-gray-500': !checked,
+                })}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -47,21 +53,16 @@ function Editor() {
                 />
               </svg>
             </div>
-            <button onClick={() => setVisible(!visible)} className="btn ml-2">
-              show code
-            </button>
+            <ShowCodeBtn />
             <button className="btn btn-primary ml-2">save</button>
           </div>
         </header>
-        {visible ? (
-          <CodeBox />
-        ) : (
-          <main className="flex-1 overflow-hidden flex">
-            <Left />
-            <Canvas mobile={checked} />
-            <Right />
-          </main>
-        )}
+
+        <main className="flex-1 overflow-hidden flex">
+          <Left />
+          <Canvas mobile={checked} />
+          <Right />
+        </main>
       </div>
     </DndProvider>
   )
