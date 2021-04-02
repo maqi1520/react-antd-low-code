@@ -38,7 +38,6 @@ const fields: FieldNode[] = [
     childElement: true,
     module: 'antd',
     props: {
-      rowKey: 'id',
       columns: [
         {
           title: '姓名',
@@ -58,13 +57,13 @@ const fields: FieldNode[] = [
       ],
       dataSource: [
         {
-          id: '1',
+          key: '1',
           name: '胡彦斌',
           age: 32,
           address: '西湖区湖底公园1号',
         },
         {
-          id: '2',
+          key: '2',
           name: '胡彦祖',
           age: 42,
           address: '西湖区湖底公园1号',
@@ -82,6 +81,19 @@ const fields: FieldNode[] = [
     props: {
       label: 'Username',
       name: 'username',
+    },
+  },
+  {
+    type: 'Progress',
+    module: 'antd',
+    childElement: true,
+    displayName: '进度条组件',
+    props: {
+      theme: 'success',
+      type: 'circle',
+      size: 200,
+      percent: 30,
+      strokeWidth: 10,
     },
   },
 ]

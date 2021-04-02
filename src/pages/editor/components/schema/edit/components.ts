@@ -35,24 +35,14 @@ const editFields: Record<string, Field[]> = {
   ],
   Area: [
     {
-      key: 'title',
-      name: '标题',
+      key: 'xField',
+      name: 'X轴',
       type: 'Text',
     },
     {
-      key: 'size',
-      name: '标题大小',
-      type: 'Number',
-    },
-    {
-      key: 'color',
-      name: '标题颜色',
-      type: 'Color',
-    },
-    {
-      key: 'paddingTop',
-      name: '上边距',
-      type: 'Number',
+      key: 'yField',
+      name: 'Y轴',
+      type: 'Text',
     },
     {
       key: 'data',
@@ -60,26 +50,33 @@ const editFields: Record<string, Field[]> = {
       type: 'Table',
     },
   ],
-  Chart: [
+  Column: [
     {
-      key: 'title',
-      name: '标题',
+      key: 'xField',
+      name: 'X轴',
       type: 'Text',
     },
     {
-      key: 'size',
-      name: '标题大小',
-      type: 'Number',
+      key: 'yField',
+      name: 'Y轴',
+      type: 'Text',
     },
     {
-      key: 'color',
-      name: '标题颜色',
-      type: 'Color',
+      key: 'data',
+      name: '数据源',
+      type: 'Table',
+    },
+  ],
+  Bar: [
+    {
+      key: 'xField',
+      name: 'X轴',
+      type: 'Text',
     },
     {
-      key: 'paddingTop',
-      name: '上边距',
-      type: 'Number',
+      key: 'yField',
+      name: 'Y轴',
+      type: 'Text',
     },
     {
       key: 'data',
@@ -89,24 +86,14 @@ const editFields: Record<string, Field[]> = {
   ],
   Line: [
     {
-      key: 'title',
-      name: '标题',
+      key: 'xField',
+      name: 'X轴',
       type: 'Text',
     },
     {
-      key: 'size',
-      name: '标题大小',
-      type: 'Number',
-    },
-    {
-      key: 'color',
-      name: '标题颜色',
-      type: 'Color',
-    },
-    {
-      key: 'paddingTop',
-      name: '上边距',
-      type: 'Number',
+      key: 'yField',
+      name: 'Y轴',
+      type: 'Text',
     },
     {
       key: 'data',
@@ -116,87 +103,21 @@ const editFields: Record<string, Field[]> = {
   ],
   Pie: [
     {
-      key: 'title',
-      name: '标题',
+      key: 'colorField',
+      name: '颜色字段',
       type: 'Text',
     },
     {
-      key: 'size',
-      name: '标题大小',
-      type: 'Number',
-    },
-    {
-      key: 'color',
-      name: '标题颜色',
-      type: 'Color',
-    },
-    {
-      key: 'paddingTop',
-      name: '上边距',
-      type: 'Number',
+      key: 'angleField',
+      name: '角度字段',
+      type: 'Text',
     },
     {
       key: 'data',
       name: '数据源',
       type: 'Table',
     },
-  ],
-  XProgress: [
-    {
-      key: 'status',
-      name: '状态',
-      type: 'Select',
-      options: [
-        {
-          value: 'success',
-          label: '成功',
-        },
-        {
-          value: 'exception',
-          label: '异常',
-        },
-        {
-          value: 'normal',
-          label: '正常',
-        },
-        {
-          value: 'active',
-          label: 'active',
-        },
-      ],
-    },
-    {
-      key: 'type',
-      name: '类型',
-      type: 'Radio',
-      options: [
-        {
-          value: 'circle',
-          label: '圆形',
-        },
-        {
-          value: 'line',
-          label: '线形',
-        },
-        {
-          value: 'dashboard',
-          label: '指示板',
-        },
-      ],
-    },
-    {
-      key: 'percent',
-      name: '进度值',
-      type: 'Number',
-      max: 100,
-      min: 0,
-    },
-    {
-      key: 'strokeWidth',
-      name: '线条粗细',
-      type: 'Number',
-    },
-  ],
+  ]
 }
 
 export default editFields

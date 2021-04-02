@@ -19,7 +19,7 @@ export const generateCode = (state: State) => {
 
   function render(sub: State): string {
     if (sub.module) {
-      if (module[sub.module] && module[sub.module].indexOf(sub.module) === -1) {
+      if (module[sub.module] && module[sub.module].indexOf(sub.type) === -1) {
         module[sub.module] = [...module[sub.module], sub.type]
       }
       if (!module[sub.module]) {

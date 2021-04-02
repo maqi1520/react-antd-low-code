@@ -219,7 +219,7 @@ class EditableTable extends React.Component<
           dataSource={dataSource}
           columns={columns as ColumnTypes}
         />
-        <Button className="mt-2" block onClick={this.handleAdd} type="primary">
+        <Button type="primary" className="mt-2" block onClick={this.handleAdd}>
           Add
         </Button>
       </div>

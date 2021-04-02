@@ -2,12 +2,12 @@
   "name": "vite-project",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode development",
     "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
-    "@antv/f2": "^3.8.3",
+    "@ant-design/charts": "^1.1.1",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/classnames": "^2.2.11",
     "@types/lodash": "^4.14.168",
@@ -44,6 +44,7 @@
     "prettier": "^2.1.1",
     "tailwindcss": "^2.0.3",
     "typescript": "^4.1.2",
-    "vite": "^2.1.0"
+    "vite": "^2.1.0",
+    "vite-plugin-imp": "^2.0.5"
   }
 }

@@ -13,15 +13,14 @@ const fields: FieldNode[] = [
   },
   {
     type: 'Area',
-    module: '@/components',
+    module: '@ant-design/charts',
     childElement: true,
     h: 108,
     displayName: '面积图组件',
     props: {
-      title: '面积图',
-      size: 14,
-      color: 'rgba(0,0,0,1)',
-      paddingTop: 10,
+      xField: 'name',
+      yField: 'value',
+      height:400,
       data: [
         {
           name: 'A',
@@ -43,16 +42,39 @@ const fields: FieldNode[] = [
     },
   },
   {
-    type: 'Chart',
-    module: '@/components',
+    type: 'Column',
+    module: '@ant-design/charts',
     childElement: true,
     h: 102,
     displayName: '柱状图组件',
     props: {
-      title: '柱状图',
-      size: 14,
-      color: 'rgba(0,0,0,1)',
-      paddingTop: 10,
+      xField: 'name',
+      yField: 'value',
+      data: [
+        {
+          name: 'A',
+          value: 20,
+        },
+        {
+          name: 'B',
+          value: 60,
+        },
+        {
+          name: 'C',
+          value: 20,
+        },
+      ],
+    },
+  },
+  {
+    type: 'Bar',
+    module: '@ant-design/charts',
+    childElement: true,
+    h: 102,
+    displayName: '柱状图组件',
+    props: {
+      xField: 'value',
+      yField: 'name',
       data: [
         {
           name: 'A',
@@ -71,15 +93,13 @@ const fields: FieldNode[] = [
   },
   {
     type: 'Line',
-    module: '@/components',
+    module: '@ant-design/charts',
     childElement: true,
     h: 104,
     displayName: '折线图组件',
     props: {
-      title: '折线图',
-      size: 14,
-      color: 'rgba(0,0,0,1)',
-      paddingTop: 10,
+      xField: 'name',
+      yField: 'value',
       data: [
         {
           name: 'A',
@@ -102,15 +122,13 @@ const fields: FieldNode[] = [
   },
   {
     type: 'Pie',
-    module: '@/components',
+    module: '@ant-design/charts',
     childElement: true,
     h: 106,
     displayName: '饼图组件',
     props: {
-      title: '饼图',
-      size: 14,
-      color: 'rgba(0,0,0,1)',
-      paddingTop: 10,
+      colorField: 'name',
+      angleField: 'value',
       data: [
         {
           name: 'A',
@@ -129,20 +147,6 @@ const fields: FieldNode[] = [
           value: 80,
         },
       ],
-    },
-  },
-  {
-    type: 'XProgress',
-    module: '@/components',
-    childElement: true,
-    h: 102,
-    displayName: '进度条组件',
-    props: {
-      theme: 'success',
-      type: 'circle',
-      size: 200,
-      percent: 30,
-      strokeWidth: 10,
     },
   },
 ]

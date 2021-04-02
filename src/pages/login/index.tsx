@@ -17,7 +17,7 @@ export default function Login() {
   console.log(errors)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-indigo-500 flex justify-center items-center">
+    <div className="min-h-screen bg-gradient-to-r  from-indigo-400 to-purple-700 flex justify-center items-center">
       <div className="mx-auto w-full max-w-sm bg-white p-10 shadow-lg">
         <h2 className="mt-2 text-3xl leading-9 font-extrabold text-gray-900">
           Sign in to your account

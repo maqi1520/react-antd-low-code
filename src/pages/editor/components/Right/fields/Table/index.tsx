@@ -8,6 +8,7 @@ import React, {
 } from 'react'
 import { Table, Input, Button, Popconfirm, Form, Modal, Upload } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
+import ApiModal from './ApiModal'
 import { v1 as uuid } from 'uuid'
 import XLSX from 'xlsx'
 
@@ -129,12 +130,6 @@ class EditableTable extends React.Component<any, any> {
         editable?: undefined
       }
   )[]
-  apiForm: {
-    api: string
-    header: string
-    dataField: string
-  }
-
   constructor(props: any) {
     super(props)
 
@@ -186,12 +181,6 @@ class EditableTable extends React.Component<any, any> {
       ]
     }
 
-    this.apiForm = {
-      api: '',
-      header: '',
-      dataField: '',
-    }
-
     const dataSource =
       props.value &&
       props.value.map((item: any, i: number) => ({ key: i + '', ...item }))
@@ -199,7 +188,6 @@ class EditableTable extends React.Component<any, any> {
     this.state = {
       dataSource: dataSource,
       visible: false,
-      apiVisible: false,
       apiResult: '',
     }
   }
@@ -248,6 +236,13 @@ class EditableTable extends React.Component<any, any> {
     this.props.onChange && this.props.onChange(newDataSource)
   }
 
+  handleChange = (newDataSource: Record<string, string>[]) => {
+    this.setState({
+      dataSource: newDataSource,
+    })
+    this.props.onChange && this.props.onChange(newDataSource)
+  }
+
   handleSave = (row: any) => {
     const newData = [...this.state.dataSource]
     const index = newData.findIndex((item) => row.key === item.key)
@@ -273,61 +268,11 @@ class EditableTable extends React.Component<any, any> {
   }
 
   handleCancel = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    console.log(123)
+
     this.setState({
       visible: false,
     })
-  }
-
-  showApiModal = () => {
-    this.setState({
-      apiVisible: true,
-    })
-  }
-
-  handleAPIOk = () => {
-    const { dataField } = this.apiForm
-    if (dataField) {
-      let data = this.state.apiResult[dataField]
-      if (data && data instanceof Array) {
-        data = data.map((item, i) => ({ key: i + '', ...item }))
-        this.setState({
-          dataSource: data,
-        })
-        this.props.onChange && this.props.onChange(data)
-      }
-      this.setState({
-        apiVisible: false,
-      })
-    }
-  }
-
-  handleAPICancel = () => {
-    this.setState({
-      apiVisible: false,
-    })
-  }
-
-  handleApiField = (type: 'api' | 'header' | 'dataField', v: string) => {
-    this.apiForm[type] = v
-  }
-
-  getApiFn = () => {
-    const { api, header } = this.apiForm
-    fetch(api, {
-      cache: 'no-cache',
-      headers: Object.assign(
-        { 'content-type': 'application/json' },
-        header ? JSON.parse(header) : {}
-      ),
-      method: 'GET',
-      mode: 'cors',
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        this.setState({
-          apiResult: res,
-        })
-      })
   }
 
   render() {
@@ -392,11 +337,11 @@ class EditableTable extends React.Component<any, any> {
         reader.readAsBinaryString(file)
       },
     }
+    console.log(this.state.dataSource)
+
     return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
-          编辑数据源
-        </Button>
+      <>
+        <Button onClick={this.showModal}>编辑数据源</Button>
         <Modal
           title="编辑数据源"
           visible={this.state.visible}
@@ -406,20 +351,18 @@ class EditableTable extends React.Component<any, any> {
           cancelText="取消"
         >
           <Button
-            onClick={this.handleAdd}
             type="primary"
+            onClick={this.handleAdd}
             style={{ marginBottom: 16, marginRight: 16 }}
           >
             添加行
           </Button>
           <Upload {...props}>
-            <Button type="primary" ghost style={{ marginRight: 16 }}>
+            <Button ghost type="primary" style={{ marginRight: 16 }}>
               导入Excel
             </Button>
           </Upload>
-          <Button type="primary" ghost onClick={this.showApiModal}>
-            第三方API
-          </Button>
+          <ApiModal onChange={this.handleChange}></ApiModal>
           <Table
             components={components}
             rowClassName={() => 'editable-row'}
@@ -430,58 +373,7 @@ class EditableTable extends React.Component<any, any> {
             scroll={{ x: '100%' }}
           />
         </Modal>
-        <Modal
-          title="配置api"
-          visible={this.state.apiVisible}
-          onOk={this.handleAPIOk}
-          onCancel={this.handleAPICancel}
-          okText="确定"
-          cancelText="取消"
-        >
-          <div>
-            <Form.Item>
-              <Input
-                placeholder="请输入api地址"
-                onChange={(e) => this.handleApiField('api', e.target.value)}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Input.TextArea
-                placeholder="请输入头信息, 如{token: 123456}, 格式必须为json对象"
-                rows={4}
-                onChange={(e) => this.handleApiField('header', e.target.value)}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" onClick={this.getApiFn}>
-                发送请求
-              </Button>
-            </Form.Item>
-            {this.state.apiResult && (
-              <>
-                <Form.Item>
-                  <Input.TextArea
-                    rows={6}
-                    value={JSON.stringify(this.state.apiResult, null, 4)}
-                  />
-                </Form.Item>
-                <Form.Item>
-                  <Input
-                    placeholder="设置数据源字段"
-                    onChange={(e) =>
-                      this.handleApiField('dataField', e.target.value)
-                    }
-                  />
-                </Form.Item>
-                <p style={{ color: 'red' }}>
-                  数据源字段是接口返回的图表数据对应的字段, 必填,
-                  否则无法正确导入数据
-                </p>
-              </>
-            )}
-          </div>
-        </Modal>
-      </div>
+      </>
     )
   }
 }

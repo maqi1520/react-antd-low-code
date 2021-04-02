@@ -97,7 +97,7 @@ export default function OptionEditor({ value, onChange }: Props) {
           option={option}
         />
       ))}
-      <button onClick={handleAdd} className="btn btn-primary mt-2 w-full">
+      <button onClick={handleAdd} className="btn mt-2 w-full">
         Add
       </button>
     </div>
