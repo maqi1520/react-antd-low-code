@@ -7,9 +7,9 @@
     "start": "cd server && npm start",
     "prestart": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm install && npm run build",
-    "build:server": "cd server && npm install  && npm run build",
-    "dev:s": "cd server && yarn dev",
-    "dev:c": "cd client && yarn dev"
+    "build:server": "cd server && npm install && npm run build",
+    "dev:s": "cd server && npm run dev",
+    "dev:c": "cd client && npm run dev"
   },
   "repository": {
     "type": "git",
