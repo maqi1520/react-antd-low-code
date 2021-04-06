@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import cl from 'classnames'
 
@@ -6,6 +6,13 @@ interface Props {}
 
 export default function Header({}: Props): ReactElement {
   const [visible, setVisible] = useState(true)
+  useEffect(() => {
+    fetch('/api/users')
+      .then((res) => res.json)
+      .then((res) => {
+        console.log(res)
+      })
+  }, [])
   return (
     <header className="relative z-50 w-full h-24">
       <div className="container flex items-center justify-center h-full max-w-6xl px-8 mx-auto sm:justify-between xl:px-0">

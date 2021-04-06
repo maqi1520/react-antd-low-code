@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import mockup from '/~/assets/mockup.png'
 
 interface Props {}
 
@@ -93,7 +94,7 @@ export default function Banner({}: Props): ReactElement {
         <div className="relative z-50 flex flex-col items-end justify-center w-full h-full lg:w-1/2 ms:pl-10">
           <div className="container relative left-0 w-full max-w-4xl">
             <img
-              src="/public/static/mockup.png"
+              src={mockup}
               className="w-full h-auto mt-20 mb-20 ml-0 lg:mt-24 xl:mt-40 lg:mb-0 lg:h-full lg:-ml-12"
             />
           </div>
