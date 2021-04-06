@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --watch src -e ts,tsx --exec ts-node src/server.ts",
     "build-ts": "tsc",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --quiet --fix",
     "serve": "node dist/server.js",
     "build": "npm run lint && npm run build-ts",
     "start": "cross-env NODE_ENV=production npm run serve"
