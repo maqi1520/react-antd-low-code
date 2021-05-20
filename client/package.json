@@ -16,6 +16,7 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
     "antd": "^4.14.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "express": "^4.17.1",
     "lodash": "^4.17.21",

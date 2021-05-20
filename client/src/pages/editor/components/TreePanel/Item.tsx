@@ -176,7 +176,7 @@ export default function Item({ data, parentId, index }: Props) {
 
   return (
     <li onClick={handleFocus} ref={ref}>
-      {data.childElement && isOver && canDrop && !positionDown ? (
+      {!isParentNode(data.type) && isOver && canDrop && !positionDown ? (
         <div className="border-indigo-600 bg-indigo-50 border-1 h-7" />
       ) : null}
       <div
@@ -186,10 +186,10 @@ export default function Item({ data, parentId, index }: Props) {
         })}
       >
         <div className="flex items-center relative">
-          {data.childElement ? tagIcon : arrowIcon}
+          {!isParentNode(data.type) ? tagIcon : arrowIcon}
           {data.type}
         </div>
-        {!data.childElement && isOver && canDrop && (
+        {isParentNode(data.type) && isOver && canDrop && (
           <ul className="ml-5">
             <li>
               <div className="border-indigo-600 bg-indigo-50 border h-7" />
@@ -211,7 +211,7 @@ export default function Item({ data, parentId, index }: Props) {
           </ul>
         )}
       </div>
-      {data.childElement && isOver && canDrop && positionDown ? (
+      {!isParentNode(data.type) && isOver && canDrop && positionDown ? (
         <div className="border-indigo-600 bg-indigo-50 border h-7" />
       ) : null}
     </li>

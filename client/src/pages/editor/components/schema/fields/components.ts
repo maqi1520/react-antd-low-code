@@ -14,13 +14,12 @@ const fields: FieldNode[] = [
   {
     type: 'Area',
     module: '@ant-design/charts',
-    childElement: true,
     h: 108,
     displayName: '面积图组件',
     props: {
       xField: 'name',
       yField: 'value',
-      height:400,
+      height: 400,
       data: [
         {
           name: 'A',
@@ -44,7 +43,6 @@ const fields: FieldNode[] = [
   {
     type: 'Column',
     module: '@ant-design/charts',
-    childElement: true,
     h: 102,
     displayName: '柱状图组件',
     props: {
@@ -69,7 +67,6 @@ const fields: FieldNode[] = [
   {
     type: 'Bar',
     module: '@ant-design/charts',
-    childElement: true,
     h: 102,
     displayName: '柱状图组件',
     props: {
@@ -94,7 +91,6 @@ const fields: FieldNode[] = [
   {
     type: 'Line',
     module: '@ant-design/charts',
-    childElement: true,
     h: 104,
     displayName: '折线图组件',
     props: {
@@ -123,7 +119,6 @@ const fields: FieldNode[] = [
   {
     type: 'Pie',
     module: '@ant-design/charts',
-    childElement: true,
     h: 106,
     displayName: '饼图组件',
     props: {

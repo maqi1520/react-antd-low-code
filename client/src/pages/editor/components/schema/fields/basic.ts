@@ -9,7 +9,6 @@ const fields: FieldNode[] = [
   },
   {
     type: 'h1',
-    childElement: true,
     props: {
       className: 'text-3xl',
       children: 'H1',
@@ -18,7 +17,6 @@ const fields: FieldNode[] = [
 
   {
     type: 'p',
-    childElement: true,
     props: {
       className: '',
       children: '段落111',
@@ -26,7 +24,6 @@ const fields: FieldNode[] = [
   },
   {
     type: 'button',
-    childElement: true,
     props: {
       className: 'btn btn-primary',
       children: 'button',
@@ -34,7 +31,6 @@ const fields: FieldNode[] = [
   },
   {
     type: 'input',
-    childElement: true,
     props: {
       type: 'text',
       placeholder: 'pleaceholder',
@@ -42,7 +38,6 @@ const fields: FieldNode[] = [
   },
   {
     type: 'select',
-    childElement: true,
     props: {
       children: [
         { value: 'man', label: 'man' },
@@ -53,7 +48,6 @@ const fields: FieldNode[] = [
   },
   {
     type: 'img',
-    childElement: true,
     props: {
       width: '100',
       height: '100',
@@ -63,14 +57,12 @@ const fields: FieldNode[] = [
   },
   {
     type: 'span',
-    childElement: true,
     props: {
       children: '文本',
     },
   },
   {
     type: 'Link',
-    childElement: true,
     module: 'react-router-dom',
     props: {
       to: '###',

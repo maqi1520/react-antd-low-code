@@ -4,7 +4,6 @@ import preview from './preview/index'
 export interface FieldNode {
   type: keyof typeof preview
   h?: number
-  childElement?: boolean
   displayName?: string
   module?: string
   props: Record<string, any>

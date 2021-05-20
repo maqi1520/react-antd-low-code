@@ -3,7 +3,6 @@ import { FieldNode } from '../types'
 const fields: FieldNode[] = [
   {
     type: 'Button',
-    childElement: true,
     module: 'antd',
     props: {
       children: 'Button',
@@ -12,19 +11,16 @@ const fields: FieldNode[] = [
   },
   {
     type: 'Input',
-    childElement: true,
     module: 'antd',
     props: {},
   },
   {
     type: 'InputNumber',
-    childElement: true,
     module: 'antd',
     props: {},
   },
   {
     type: 'Radio',
-    childElement: true,
     module: 'antd',
     props: {
       options: [
@@ -35,7 +31,6 @@ const fields: FieldNode[] = [
   },
   {
     type: 'Table',
-    childElement: true,
     module: 'antd',
     props: {
       columns: [
@@ -86,7 +81,6 @@ const fields: FieldNode[] = [
   {
     type: 'Progress',
     module: 'antd',
-    childElement: true,
     displayName: '进度条组件',
     props: {
       theme: 'success',

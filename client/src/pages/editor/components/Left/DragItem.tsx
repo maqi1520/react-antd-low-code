@@ -36,7 +36,6 @@ export default function DragItem({
           {
             type: 'Input',
             id: uuid(),
-            childElement: true,
             module: 'antd',
             props: {},
           },

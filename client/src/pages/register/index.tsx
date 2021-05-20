@@ -5,25 +5,22 @@ import { useHistory } from 'react-router'
 import { useAsyncFn } from 'react-use'
 import cl from 'classnames'
 
-export interface SigninData {
+export interface RegisterData {
   email: string
   password: string
 }
 
-export default function Login() {
+export default function Register() {
   const [error, setError] = useState('')
   const { register, handleSubmit, errors } = useForm({
-    defaultValues: {
-      email: 'admin@admin.com',
-      password: '123456',
-    },
+    defaultValues: {},
   })
   const history = useHistory()
   const [state, doFetch] = useAsyncFn(async (data) => {
-    const response = await axios.post('/api/signin', data)
+    const response = await axios.post('/api/register', data)
     return response.data
   }, [])
-  const onSubmit = async (data: SigninData) => {
+  const onSubmit = async (data: RegisterData) => {
     const res = await doFetch(data)
     if (res.success) {
       history.push('/editor')
@@ -36,7 +33,7 @@ export default function Login() {
     <div className="min-h-screen bg-gradient-to-r  from-indigo-400 to-purple-700 flex justify-center items-center">
       <div className="mx-auto w-full max-w-sm bg-white p-10 shadow-lg">
         <h2 className="mt-2 text-3xl leading-9 font-extrabold text-gray-900">
-          登录
+          注册
         </h2>
 
         <div className="mt-8">
@@ -116,7 +113,7 @@ export default function Login() {
                     htmlFor="remember_me"
                     className="ml-2 block text-sm leading-5 text-gray-900"
                   >
-                    记住密码
+                    同意
                   </label>
                 </div>
 
@@ -125,7 +122,7 @@ export default function Login() {
                     href="#"
                     className="font-medium text-indigo-600 hover:text-indigo-600 focus:outline-none focus:underline transition ease-in-out duration-150"
                   >
-                    忘记密码?
+                    使用条款
                   </a>
                 </div>
               </div>
@@ -138,17 +135,17 @@ export default function Login() {
                     'opacity-50': state.loading,
                   })}
                 >
-                  {state.loading ? 'loading' : '登录'}
+                  {state.loading ? 'loading' : '注册'}
                 </button>
               </div>
 
               <div className="mt-6">
                 <button
-                  onClick={() => history.push('/register')}
+                  onClick={() => history.push('/login')}
                   type="button"
                   className="btn w-full btn-lg"
                 >
-                  注册
+                  登录
                 </button>
               </div>
             </form>

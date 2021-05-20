@@ -12,6 +12,7 @@ import {
   FieldNodeSchema,
 } from '../../codeTreeSlice'
 import { CRAD } from '../ItemTypes'
+import { isParentNode } from '../schema/utils'
 
 interface Props {
   data: FieldNodeSchema
@@ -130,7 +131,7 @@ export default function Item({ data, parentId, index }: Props) {
 
   connectDragPreview(getEmptyImage())
   drag(drop(ref))
-  const CurrentTag = previewFields[data.type]
+  const CurrentTag = previewFields[data.type] as any
 
   const handleFocus = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation()
@@ -178,7 +179,7 @@ export default function Item({ data, parentId, index }: Props) {
       </svg>
     </span>
   )
-  if (data.childElement) {
+  if (!isParentNode(data.type)) {
     return (
       <div
         ref={ref}

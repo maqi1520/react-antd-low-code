@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { v1 as uuid } from 'uuid'
 import { traverse, traverseUp } from '../../utils'
 import { FieldNode } from './components/schema/types'
+import { isParentNode } from './components/schema/utils'
 
 export interface FieldNodeSchema extends FieldNode {
   id: string
@@ -45,7 +46,7 @@ const codeTree = createSlice({
 
       traverse(state, (sub) => {
         //非嵌套标签往父层插入
-        if (data.childElement && sub.id === hoverParentId) {
+        if (!isParentNode(data.type) && sub.id === hoverParentId) {
           if (positionDown) {
             sub.children.splice(hoverIndex + 1, 0, { ...item, id: focusId })
           } else {
@@ -53,7 +54,7 @@ const codeTree = createSlice({
           }
           return false
         }
-        if (!data.childElement && sub.id === data.id) {
+        if (isParentNode(data.type) && sub.id === data.id) {
           if (sub.children && sub.children.length > 0) {
             sub.children.push({
               ...item,
@@ -105,7 +106,7 @@ const codeTree = createSlice({
       })
 
       traverse(state, (sub) => {
-        if (hoverData.childElement && sub.id === hId) {
+        if (!isParentNode(hoverData.type) && sub.id === hId) {
           if (positionDown) {
             sub.children.splice(hIndex + 1, 0, { ...dragData, id: focusId })
           } else {
@@ -114,7 +115,7 @@ const codeTree = createSlice({
           return false
         }
         //非嵌套标签往父层插入
-        if (!hoverData.childElement && sub.id === hoverData.id) {
+        if (isParentNode(hoverData.type) && sub.id === hoverData.id) {
           if (sub.children) {
             sub.children.unshift({
               ...dragData,
