@@ -10,6 +10,7 @@ import {
   FieldNodeSchema,
 } from '../../codeTreeSlice'
 import { TREEITEM } from '../ItemTypes'
+import { isParentNode } from '../schema/utils'
 
 interface Props {
   data: FieldNodeSchema
