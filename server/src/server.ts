@@ -1,6 +1,6 @@
 import express from 'express'
 import path from 'path'
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
 import cookieParser from 'cookie-parser'
 import { protect } from './middleware/auth'
@@ -86,6 +86,7 @@ router.post('/signin', async (req, res) => {
     const token = jwt.sign(user, process.env.JWT_SECRET)
     res.cookie('token', token)
     res.json({
+      token: token,
       success: true,
     })
   } else {
@@ -101,6 +102,9 @@ app.use(errorHandler)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, '../../client/dist')))
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../../client/dist', 'index.html'))
+  })
 }
 
 app.listen(port, () => {

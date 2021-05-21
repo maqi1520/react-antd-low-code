@@ -1,11 +1,17 @@
 import React from 'react'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter, BrowserRouter, Route, Switch } from 'react-router-dom'
 import Editor from '../pages/editor'
 import Home from '../pages/home'
 import Login from '../pages/login'
 import Register from '../pages/register'
 import { Provider } from 'react-redux'
+import PrivateRoute from './PrivateRoute'
 import store from './store'
+
+type TypeRouter = typeof BrowserRouter
+
+const Router: TypeRouter =
+  process.env.NODE_ENV === 'production' ? BrowserRouter : HashRouter
 
 export default function App() {
   return (
@@ -14,7 +20,7 @@ export default function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/editor" component={Editor} />
+          <PrivateRoute path="/editor" component={Editor} />
           <Route path="/" component={Home} />
         </Switch>
       </Router>

@@ -4,15 +4,17 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
 import { useAsyncFn } from 'react-use'
 import cl from 'classnames'
+import { message } from 'antd'
 
 export interface RegisterData {
   email: string
   password: string
+  agree: boolean
 }
 
 export default function Register() {
   const [error, setError] = useState('')
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors } = useForm<RegisterData>({
     defaultValues: {},
   })
   const history = useHistory()
@@ -21,9 +23,14 @@ export default function Register() {
     return response.data
   }, [])
   const onSubmit = async (data: RegisterData) => {
+    if (!data.agree) {
+      setError('请先同意使用条款！')
+      return
+    }
     const res = await doFetch(data)
     if (res.success) {
-      history.push('/editor')
+      message.success('注册成功，请登录！')
+      history.push('/login')
     } else {
       setError(res.message)
     }
@@ -104,7 +111,7 @@ export default function Register() {
               <div className="mt-6 flex items-center justify-between">
                 <div className="flex items-center">
                   <input
-                    name="remember_me"
+                    name="agree"
                     type="checkbox"
                     ref={register}
                     className=""

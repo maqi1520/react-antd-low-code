@@ -26,6 +26,7 @@ export default function Login() {
   const onSubmit = async (data: SigninData) => {
     const res = await doFetch(data)
     if (res.success) {
+      window.sessionStorage.setItem('token', res.token)
       history.push('/editor')
     } else {
       setError(res.message)

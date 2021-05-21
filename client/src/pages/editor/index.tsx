@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Switch } from 'antd'
 import cl from 'classnames'
 import Left from './components/Left'
@@ -14,14 +15,14 @@ function Editor() {
     <DndProvider backend={HTML5Backend}>
       <div className="h-screen flex flex-col text-gray-600">
         <header className="h-14 px-2 shadow-sm sticky border-b border-gray-200 flex-shrink-0  flex justify-between items-center">
-          <div>
+          <Link to="/">
             <span className="text-3xl">
               <span className="text-red-500">L</span>
               <span className="text-indigo-600">C</span>
               <span className="text-green-400">G</span>
             </span>
             <span className="text-sm ml-2 text-gray-600">低代码平台</span>
-          </div>
+          </Link>
 
           <div className="inline-flex justify-center items-center">
             <div className="inline-flex justify-center items-center">
