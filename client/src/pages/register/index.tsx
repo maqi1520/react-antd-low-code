@@ -19,7 +19,7 @@ export default function Register() {
   })
   const history = useHistory()
   const [state, doFetch] = useAsyncFn(async (data) => {
-    const response = await axios.post('/api/register', data)
+    const response = await axios.post('/api/auth/register', data)
     return response.data
   }, [])
   const onSubmit = async (data: RegisterData) => {

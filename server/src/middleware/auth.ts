@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
 
-interface Req extends Request {
+export interface Req extends Request {
   user: User
 }
 

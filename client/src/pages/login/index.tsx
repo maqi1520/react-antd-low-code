@@ -20,7 +20,7 @@ export default function Login() {
   })
   const history = useHistory()
   const [state, doFetch] = useAsyncFn(async (data) => {
-    const response = await axios.post('/api/signin', data)
+    const response = await axios.post('/api/auth/signin', data)
     return response.data
   }, [])
   const onSubmit = async (data: SigninData) => {

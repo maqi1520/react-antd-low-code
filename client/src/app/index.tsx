@@ -7,6 +7,8 @@ import Register from '../pages/register'
 import { Provider } from 'react-redux'
 import PrivateRoute from './PrivateRoute'
 import store from './store'
+import Project from '../pages/project'
+import Layout from '/~/components/Layout'
 
 type TypeRouter = typeof BrowserRouter
 
@@ -17,12 +19,15 @@ export default function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <PrivateRoute path="/editor" component={Editor} />
-          <Route path="/" component={Home} />
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/editor" component={Editor} />
+            <PrivateRoute path="/project" component={Project} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </Layout>
       </Router>
     </Provider>
   )

@@ -11,7 +11,11 @@ export async function errorHandler(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ): Promise<any> {
-  const { statusCode, message } = err
+  const defaultErr = {
+    message: 'Express error handler caught unknown middleware',
+    statusCode: 500,
+  }
+  const { statusCode, message } = { ...defaultErr, ...err }
   res.status(statusCode).json({
     message,
   })

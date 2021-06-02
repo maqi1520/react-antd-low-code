@@ -29,4 +29,32 @@ model User {
   name      String?  @db.VarChar(255)
   password  String?  @db.VarChar(255)
   posts     Post[]
+  projects     Project[]
+}
+ 
+model Project {
+  id        Int      @default(autoincrement()) @id
+  name      String?  @db.VarChar(255)
+  desc      String?  @db.VarChar(255)
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    Int
+  routes    Route[]
+}
+
+model Route {
+  id          Int      @default(autoincrement()) @id
+  name        String?  @db.VarChar(255)
+  path        String?  @db.VarChar(255)
+  project     Project?    @relation(fields: [projectId], references: [id])
+  projectId   Int
+  component   Component?
+}
+
+model Component {
+  id          Int      @default(autoincrement()) @id
+  name        String?  @db.VarChar(255)
+  code        String?  @db.VarChar(255)
+  data        String?  @db.Text
+  routeId Int  @unique
+  route Route @relation(fields: [routeId], references: [id]) 
 }

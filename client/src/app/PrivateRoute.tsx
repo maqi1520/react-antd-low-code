@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
 
-function useAuth() {
+export function useAuth() {
   return window.sessionStorage.getItem('token')
 }
 
