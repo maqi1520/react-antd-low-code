@@ -34,13 +34,8 @@ const codeTree = createSlice({
       })
     },
     appendCom: (state, action) => {
-      const {
-        data,
-        item,
-        hoverParentId,
-        hoverIndex,
-        positionDown,
-      } = action.payload
+      const { data, item, hoverParentId, hoverIndex, positionDown } =
+        action.payload
 
       const focusId = uuid()
 
@@ -159,13 +154,7 @@ const codeTree = createSlice({
   },
 })
 
-export const {
-  append,
-  appendCom,
-  moveCom,
-  setFocus,
-  removeCom,
-  updateTree,
-} = codeTree.actions
+export const { append, appendCom, moveCom, setFocus, removeCom, updateTree } =
+  codeTree.actions
 
 export default codeTree.reducer

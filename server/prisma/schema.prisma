@@ -29,6 +29,7 @@ model User {
   name      String?  @db.VarChar(255)
   password  String?  @db.VarChar(255)
   posts     Post[]
+  components     Component[]
   projects     Project[]
 }
  
@@ -47,7 +48,8 @@ model Route {
   path        String?  @db.VarChar(255)
   project     Project?    @relation(fields: [projectId], references: [id])
   projectId   Int
-  component   Component?
+  componentId Int  @unique
+  component Component @relation(fields: [componentId], references: [id]) 
 }
 
 model Component {
@@ -55,6 +57,8 @@ model Component {
   name        String?  @db.VarChar(255)
   code        String?  @db.VarChar(255)
   data        String?  @db.Text
-  routeId Int  @unique
-  route Route @relation(fields: [routeId], references: [id]) 
+  routes    Route[]
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    Int
+
 }

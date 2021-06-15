@@ -2,12 +2,20 @@
   "name": "vite-project",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "yarn": "1.x"
+  },
   "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
   "scripts": {
     "start": "cd server && npm start",
     "build": "npm run build:server && npm run build:client",
-    "build:client": "cd client && npm install && npm run build",
-    "build:server": "cd server && npm install && npm run build",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
     "dev:s": "cd server && npm run dev",
     "dev:c": "cd client && npm run dev"
   },

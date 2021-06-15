@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Switch } from 'antd'
+import { message, Switch } from 'antd'
 import cl from 'classnames'
 import Left from './components/Left'
 import Right from './components/Right'
@@ -8,9 +8,23 @@ import Canvas from './components/Canvas'
 import ShowCodeBtn from './components/ShowCodeBtn'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
+import { useAppStore } from '/~/app/hooks'
+import axios from 'axios'
 
 function Editor() {
   const [checked, setChecked] = useState(false)
+  const store = useAppStore()
+  const state = store.getState()
+  const handleSave = async () => {
+    const res = await axios.post('/api/component', {
+      ...state.component,
+      data: JSON.stringify(state.codeTree),
+    })
+    if (res.data) {
+      message.success('保存成功！')
+    }
+    //saveComponent()
+  }
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="h-screen flex flex-col text-gray-600">
@@ -63,7 +77,9 @@ function Editor() {
               </svg>
             </div>
             <ShowCodeBtn />
-            <button className="btn btn-primary ml-2">save</button>
+            <button onClick={handleSave} className="btn btn-primary ml-2">
+              save
+            </button>
           </div>
         </header>
 
