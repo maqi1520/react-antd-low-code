@@ -16,7 +16,7 @@ export default function Banner({}: Props): ReactElement {
             可视化拖拽，所见所得，源码下载
           </p>
           <Link
-            to="/editor"
+            to="/project"
             className="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0 hover:text-white"
           >
             开始
@@ -92,10 +92,7 @@ export default function Banner({}: Props): ReactElement {
         </div>
         <div className="relative flex flex-col items-end justify-center w-full h-full lg:w-1/2 ms:pl-10">
           <div className="container w-full max-w-4xl">
-            <img
-              src={mockup}
-              className="w-full h-auto mt-20 mb-20 ml-0 lg:mt-24 xl:mt-40 lg:mb-0 lg:h-full lg:-ml-12"
-            />
+            <img src={mockup} className="w-full h-auto lg:mt-10" />
           </div>
         </div>
       </div>

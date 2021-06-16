@@ -1,44 +1,24 @@
 import React, { memo, ReactElement, useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import cl from 'classnames'
-import axios from 'axios'
-import { useAsyncFn } from 'react-use'
 import { useAuth } from '/~/app/PrivateRoute'
 
 interface Props {}
 
 function Header({}: Props): ReactElement {
-  const isAuth = useAuth()
-  const history = useHistory()
-  const [user, setUser] = useState(null)
-
   const [visible, setVisible] = useState(true)
-  const [{ loading }, getUser] = useAsyncFn(async () => {
-    try {
-      const response = await axios.get('/api/user/me')
-      return response.data
-    } catch (error) {
-      return null
-    }
-  }, [])
+  const history = useHistory()
+  const { loading, user, getUser, signOut } = useAuth()
 
-  const [, signOut] = useAsyncFn(async () => {
-    const response = await axios.post('/api/auth/signout')
-    return response.data
-  }, [])
   useEffect(() => {
-    if (isAuth) {
-      getUser().then((res) => {
-        setUser(res)
-      })
+    if (!user) {
+      getUser()
     }
   }, [])
 
   const handleLogout = () => {
     signOut().then(() => {
-      sessionStorage.clearItem('token')
       history.replace('/')
-      setUser(null)
     })
   }
 

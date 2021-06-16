@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
 import { useAsyncFn } from 'react-use'
 import cl from 'classnames'
+import { useAuth } from '/~/app/PrivateRoute'
 
 export interface SigninData {
   email: string
@@ -12,6 +13,7 @@ export interface SigninData {
 
 export default function Login() {
   const [error, setError] = useState('')
+  const { user, getUser } = useAuth()
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
       email: 'admin@admin.com',
@@ -26,8 +28,9 @@ export default function Login() {
   const onSubmit = async (data: SigninData) => {
     const res = await doFetch(data)
     if (res.success) {
-      window.sessionStorage.setItem('token', res.token)
-      history.push('/editor')
+      getUser().then(() => {
+        history.push('/editor')
+      })
     } else {
       setError(res.message)
     }
