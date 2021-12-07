@@ -43,4 +43,4 @@ yarn start
 
 ## 部署
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/maqi1520/react-antd-low-code/blob/next&project-name=react-antd-low-code&repository-name=react-antd-low-code)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/maqi1520/react-antd-low-code&project-name=react-antd-low-code&repository-name=react-antd-low-code)
