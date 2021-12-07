@@ -1,20 +1,20 @@
-# Use postgres/example user/password credentials
-version: '3.1'
+version: '3'
 
 services:
-
-  db:
-    image: postgres
-    restart: always
+  database:
+    # 使用镜像文件
+    image: mysql
+    # 容器名称
+    container_name: mysql
+    # 端口映射
     ports:
-        - 5432:5432
+      - 3306:3306
+    # 设置MySQL的root用户密码
+    volumes:
+      - ./mysql/lib/mysql:/var/lib/mysql
+      - ./mysql/logs/mysql:/var/log/mysql
     environment:
-      POSTGRES_DB: vite
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: example
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
