@@ -92,7 +92,7 @@ export default function Banner({}: Props): ReactElement {
         </div>
         <div className="relative flex flex-col items-end justify-center w-full h-full lg:w-1/2 ms:pl-10">
           <div className="container w-full max-w-4xl">
-            <Image src={mockup} className="w-full h-auto lg:mt-10" />
+            <Image src={mockup} alt="" className="w-full h-auto lg:mt-10" />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { traverse } from '../../../utils';
 import { fields } from './fields';
 import editFields from '../schema/edit';
@@ -50,7 +50,7 @@ export default function Right() {
         />
       );
     }
-    const Field = fields[type];
+    const Field = fields[type] as any;
     return (
       <Field
         {...other}

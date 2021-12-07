@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 
 interface Column {
-  dataIndex: string
-  title: string
+  dataIndex: string;
+  title: string;
 }
 
 interface Props {
-  value: Column[]
-  onChange: (v: Column[]) => void
+  value: Column[];
+  onChange: (v: Column[]) => void;
 }
 
 interface ItemProps {
-  index: number
-  option: Column
-  onChange: (v: Column, i: number) => void
-  onRemove: (i: number) => void
+  index: number;
+  option: Column;
+  onChange: (v: Column, i: number) => void;
+  onRemove: (i: number) => void;
 }
 
 function OptionItemEditor({ option, onChange, onRemove, index }: ItemProps) {
@@ -25,8 +25,8 @@ function OptionItemEditor({ option, onChange, onRemove, index }: ItemProps) {
         [e.target.name]: e.target.value,
       },
       index
-    )
-  }
+    );
+  };
   return (
     <div className="space-y-1 flex items-center">
       <div className="flex-1 flex items-center">
@@ -64,15 +64,15 @@ function OptionItemEditor({ option, onChange, onRemove, index }: ItemProps) {
         </svg>
       </div>
     </div>
-  )
+  );
 }
 
 export default function OptionEditor({ value, onChange }: Props) {
   const handleChange = (option: Column, index: number) => {
-    const newValue = [...value]
-    newValue[index] = option
-    onChange(newValue)
-  }
+    const newValue = [...value];
+    newValue[index] = option;
+    onChange(newValue);
+  };
   const handleAdd = () => {
     onChange([
       ...value,
@@ -80,17 +80,18 @@ export default function OptionEditor({ value, onChange }: Props) {
         dataIndex: '',
         title: '',
       },
-    ])
-  }
+    ]);
+  };
   const handleRemove = (index: number) => {
-    const newValue = [...value]
-    newValue.splice(index, 1)
-    onChange(newValue)
-  }
+    const newValue = [...value];
+    newValue.splice(index, 1);
+    onChange(newValue);
+  };
   return (
     <div className="space-y-2">
       {value.map((option, i) => (
         <OptionItemEditor
+          key={i}
           index={i}
           onChange={handleChange}
           onRemove={handleRemove}
@@ -101,5 +102,5 @@ export default function OptionEditor({ value, onChange }: Props) {
         Add
       </button>
     </div>
-  )
+  );
 }
