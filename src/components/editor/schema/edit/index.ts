@@ -1,9 +1,11 @@
-import basic from './basic'
-import antd from './antd'
-import components from './components'
+import basic from './basic';
+import antd from './antd';
+import components from './components';
 
-export default {
+const data = {
   ...basic,
   ...antd,
   ...components,
-}
+};
+
+export default data;
