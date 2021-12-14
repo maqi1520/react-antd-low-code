@@ -396,11 +396,15 @@ function Home({}: Props): ReactElement {
                     </h3>
                     <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
                   </div>
-                  <Image
-                    className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                    src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2694&amp;q=80"
-                    alt=""
-                  />
+                  <div className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0">
+                    <Image
+                      width="100%"
+                      height="100%"
+                      className="rounded-full" // just an example
+                      src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=269&amp;q=80"
+                      alt=""
+                    />
+                  </div>
                 </blockquote>
                 <blockquote className="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 mt-16 mb-16 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease xl:mb-0">
                   <div className="flex flex-col pr-10">
@@ -424,11 +428,15 @@ function Home({}: Props): ReactElement {
                     </h3>
                     <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
                   </div>
-                  <Image
-                    className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                    src="https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
-                    alt=""
-                  />
+                  <div className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0">
+                    <Image
+                      width="100%"
+                      height="100%"
+                      className="rounded-full" // just an example
+                      src="https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=140&amp;q=80"
+                      alt=""
+                    />
+                  </div>
                 </blockquote>
               </div>
               <div className="w-full xl:w-1/2 xl:pl-8">
@@ -455,11 +463,15 @@ function Home({}: Props): ReactElement {
                     </h3>
                     <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
                   </div>
-                  <Image
-                    className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1700&amp;q=80"
-                    alt=""
-                  />
+                  <div className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0">
+                    <Image
+                      width="100%"
+                      height="100%"
+                      className="rounded-full" // just an example
+                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=170&amp;q=80"
+                      alt=""
+                    />
+                  </div>
                 </blockquote>
                 <blockquote className="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 mt-16 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease">
                   <div className="flex flex-col pr-10">
@@ -484,11 +496,15 @@ function Home({}: Props): ReactElement {
                     </h3>
                     <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
                   </div>
-                  <Image
-                    className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2700&amp;q=80"
-                    alt=""
-                  />
+                  <div className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0">
+                    <Image
+                      width="100%"
+                      height="100%"
+                      className="rounded-full" // just an example
+                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=270&amp;q=80"
+                      alt=""
+                    />
+                  </div>
                 </blockquote>
               </div>
             </div>

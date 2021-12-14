@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import Link from 'next/link';
 import { getLayout } from '../../components/Layout';
+import { useRouter } from 'next/router';
 
 interface Props {}
 
@@ -37,11 +38,18 @@ export function Item({}: Props): ReactElement {
 }
 
 export default function Project(): ReactElement {
+  const router = useRouter();
+
+  const handleCreate = () => {
+    router.push('/editor');
+  };
   return (
     <main className="container max-w-6xl mx-auto py-4">
       <div className="flex justify-between">
         <div className="text-2xl font-medium text-gray-800">我的应用</div>
-        <button className="btn btn-primary">创建应用</button>
+        <button onClick={handleCreate} className="btn btn-primary">
+          创建应用
+        </button>
       </div>
       <div className="grid-cols-1 lg:grid-cols-4 gap-4 grid py-4">
         <Item />
